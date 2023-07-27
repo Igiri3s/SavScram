@@ -7,9 +7,13 @@ import org.example.classes.employee.EmployeePosition;
 import org.example.classes.project.Project;
 import org.example.classes.project.ProjectStatus;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         Faker faker = new Faker();
+        Scanner scanner = new Scanner(System.in);
+
         Project project1 = new Project(faker.number().randomDigitNotZero(), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().randomDigitNotZero());
         Project project2 = new Project(faker.number().randomDigitNotZero(), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().randomDigitNotZero());
         Project project3 = new Project(faker.number().randomDigitNotZero(), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().randomDigitNotZero());
@@ -47,5 +51,32 @@ public class Main {
         Company company3 = new Company(faker.number().randomDigitNotZero(), faker.name().nameWithMiddle(), (int)faker.number().randomNumber(10, true), faker.name().fullName());
         Company company4 = new Company(faker.number().randomDigitNotZero(), faker.name().nameWithMiddle(), (int)faker.number().randomNumber(10, true), faker.name().fullName());
         Company company5 = new Company(faker.number().randomDigitNotZero(), faker.name().nameWithMiddle(), (int)faker.number().randomNumber(10, true), faker.name().fullName());
+
+
+        while(true) {
+            System.out.println("Co chcesz zrobic? ");
+            System.out.println("a) Wyswietl pracownikow ");
+            System.out.println("b) Wyswietl lsite projektow ");
+            System.out.println("c) Wyswietl liste firm ");
+            char choice = scanner.next().charAt(0);
+
+            switch (choice) {
+                case 'a': {
+                    break;
+                }
+                case 'b': {
+                    break;
+                }
+                case 'c': {
+                    break;
+                }
+                case 'q':{
+                    break;
+                }
+            }
+
+
+        }
+
     }
 }
