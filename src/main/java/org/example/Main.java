@@ -104,12 +104,21 @@ public class Main {
 
             switch (choice) {
                 case 'a': {
+                    for(Employee e: employeeList){
+                        System.out.println(e);
+                    }
                     break;
                 }
                 case 'b': {
+                    for(Project p: projectList){
+                        System.out.println(p);
+                    }
                     break;
                 }
                 case 'c': {
+                    for(Company c: companyList){
+                        System.out.println(c);
+                    }
                     break;
                 }
                 case 'q':{
