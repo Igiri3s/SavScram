@@ -7,6 +7,8 @@ import org.example.classes.employee.EmployeePosition;
 import org.example.classes.project.Project;
 import org.example.classes.project.ProjectStatus;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -52,6 +54,46 @@ public class Main {
         Company company4 = new Company(faker.number().randomDigitNotZero(), faker.name().nameWithMiddle(), (int)faker.number().randomNumber(10, true), faker.name().fullName());
         Company company5 = new Company(faker.number().randomDigitNotZero(), faker.name().nameWithMiddle(), (int)faker.number().randomNumber(10, true), faker.name().fullName());
 
+        List<Project> projectList = new LinkedList<>();
+        projectList.add(project1);
+        projectList.add(project2);
+        projectList.add(project3);
+        projectList.add(project4);
+        projectList.add(project5);
+        projectList.add(project6);
+        projectList.add(project7);
+        projectList.add(project8);
+        projectList.add(project9);
+        projectList.add(project10);
+        projectList.add(project11);
+        projectList.add(project12);
+        projectList.add(project13);
+        projectList.add(project14);
+        projectList.add(project15);
+        projectList.add(project16);
+        projectList.add(project17);
+        projectList.add(project18);
+        projectList.add(project19);
+        projectList.add(project20);
+
+        List<Company> companyList = new LinkedList<>();
+        companyList.add(company1);
+        companyList.add(company2);
+        companyList.add(company3);
+        companyList.add(company4);
+        companyList.add(company5);
+
+        List<Employee> employeeList = new LinkedList<>();
+        employeeList.add(employee1);
+        employeeList.add(employee2);
+        employeeList.add(employee3);
+        employeeList.add(employee4);
+        employeeList.add(employee5);
+        employeeList.add(employee6);
+        employeeList.add(employee7);
+        employeeList.add(employee8);
+        employeeList.add(employee9);
+        employeeList.add(employee10);
 
         while(true) {
             System.out.println("Co chcesz zrobic? ");
