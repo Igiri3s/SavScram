@@ -88,4 +88,18 @@ public class Project {
     public void setSupervisorId(int supervisorId) {
         this.supervisorId = supervisorId;
     }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "id=" + id +
+                ", projectName='" + projectName + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", cost=" + cost +
+                ", revenue=" + revenue +
+                ", projectStatus=" + projectStatus +
+                ", supervisorId=" + supervisorId +
+                '}';
+    }
 }
