@@ -294,13 +294,20 @@ public class Main {
                     if (discription.isEmpty()) {
                         discription = "Do roboty!";
                     }
+                    System.out.println("Okresl role pracownika w projekcie");
+                    String role = scanner.next();
 
-                    taskList.add(new Task(project_id, employee_id, priority, start_date, end_date, discription));
+                    taskList.add(new Task(project_id, employee_id, priority, start_date, end_date, discription, role));
                     System.err.println("Dodano wpis do listy zadan");
                     break;
                 }
                 case 'k': {
                     createNewProject(projectList);
+                    break;
+                }
+
+                case 'l': {
+                    changeRoleOfEmployee(taskList);
                     break;
                 }
 
@@ -316,6 +323,46 @@ public class Main {
 
     }
 
+    private static void changeRoleOfEmployee(final List<Task> taskList) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj id projektu, w ktorym chcesz wprowadzic zmiany");
+        int project_id = scanner.nextInt();
+        boolean check = false;
+
+        // Sprawdzam czy taki projekt istnieje
+        for (Task t : taskList) {
+            if (t.getProject_id() == project_id) ;
+            check = true;
+        }
+
+        // Przydaloby sie zabezpiecznie sprawdzajace czy ktos ma role kierownika w projekcie
+
+        if (!check) {
+            System.err.println("Taki projekt nie istnieje");
+        } else {
+            System.out.println("Podaj id pracowmnika, u ktorego chcesz zmienic role");
+            int employee_id = scanner.nextInt();
+            int index_of_emp = 0;
+            Task oldEmployee = new Task();
+            boolean check_for_emp = false;
+
+            for (Task t : taskList) {
+                if (t.getEmployee_id() == employee_id) ;
+                index_of_emp = taskList.indexOf(t);
+                oldEmployee = t;
+                check_for_emp = true;
+            }
+
+            if (!check_for_emp) {
+                System.out.println("Nie ma takiego pracownika");
+            } else {
+                System.out.println("Podaj role jaka ma miec pracownik przypisany do tego zadania");
+                String new_role = scanner.next();
+                taskList.set(index_of_emp, new Task(oldEmployee.getProject_id(), oldEmployee.getEmployee_id(), oldEmployee.getPriority(), oldEmployee.getStart_date(), oldEmployee.getEnd_date(), oldEmployee.getDiscription(), new_role));
+                System.err.println("Zmiana roli w projekcie powiodla sie");
+            }
+        }
+    }
 
     public static Employee getEmployee(int employee_id, List<Employee> employeeList) {
         return employeeList.stream()

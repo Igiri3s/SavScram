@@ -1,14 +1,12 @@
 package org.example.classes.tasks;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.Date;
 
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 public class Task {
@@ -18,5 +16,6 @@ public class Task {
     private String start_date;
     private String end_date;
     private String discription;
+    private String role;
 
 }
