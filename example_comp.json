@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "Michu",
+    "nip": 12312,
+    "owner": "Hary"
+  },
+  {
+    "id": 2,
+    "name": "Cykady",
+    "nip": 222,
+    "owner": "Patryk"
+  }
+]

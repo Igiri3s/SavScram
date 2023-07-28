@@ -1,0 +1,22 @@
+[
+  {
+    "id": 111,
+    "projectName":  "Uga Buga",
+    "startDate":  "Fri Sep 21 07:12:17 CEST 1990",
+    "endDate":  "Fri Sep 21 07:12:17 CEST 1990",
+    "cost": 8095,
+    "revenue": 79,
+    "projectStatus":  "IN_PROGRESS",
+    "supervisorId":  78
+  },
+  {
+    "id": 11,
+    "projectName":  "Uga aLA Lala Buga",
+    "startDate":  "Fri Sep 21 07:12:17 CEST 1990",
+    "endDate":  "Fri Sep 21 07:12:17 CEST 1990",
+    "cost": 80951,
+    "revenue": 792,
+    "projectStatus":  "IN_PROGRESS",
+    "supervisorId":  783
+  }
+]

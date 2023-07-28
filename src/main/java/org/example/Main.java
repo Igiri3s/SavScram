@@ -16,6 +16,8 @@ import org.json.JSONArray;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -167,27 +169,58 @@ public class Main {
                 }
                 case 'f': {
                     System.out.println("Podaj sciezke gdzie znajudje sie plik: ");
-                    String filename = scanner.nextLine();
+                    String filename = scanner.next();
+
+
+                    Gson gson = new Gson();
+
+                    System.out.println("Należy wybrać tabelę: ");
+                    System.out.println("a) Pracownicy ");
+                    System.out.println("b) Projekty ");
+                    System.out.println("c) Firmy ");
 
                     try {
-                        final Type REVIEW_TYPE = new TypeToken<List<Employee>>() {
-                        }.getType();
-                        Gson gson = new Gson();
-                        JsonReader reader = new JsonReader(new FileReader(filename));
-                        List<Employee> data = gson.fromJson(reader, REVIEW_TYPE); // contains the whole reviews list
-                        System.out.println(data);
+
+                        char pickYourList = scanner.next().charAt(0);
+                        String json = new String(Files.readAllBytes(Paths.get(filename)));
+
+                        switch (pickYourList) {
+                            case 'a': {
+                                Type employeeListType = new TypeToken<List<Employee>>() {
+                                }.getType();
+
+                                List<Employee> data = gson.fromJson(json, employeeListType); // contains the whole reviews list
+                                employeeList.addAll(data);
+
+                                System.out.println("Nowi pracownicy zostali dodani");
+                            }
+                            case 'b': {
+                                Type projectListType = new TypeToken<List<Project>>() {
+                                }.getType();
+
+                                List<Project> data = gson.fromJson(json, projectListType); // contains the whole reviews list
+                                projectList.addAll(data);
+
+                                System.out.println("Nowe projekty zostaly dodane");
+                            }
+                            case 'c': {
+                                Type companyListType = new TypeToken<List<Company>>() {
+                                }.getType();
+
+                                List<Company> data = gson.fromJson(json, companyListType); // contains the whole reviews list
+                                companyList.addAll(data);
+
+                                System.out.println("Nowe firmy zostaly dodane");
+                            }
+                        }
+
                         ; // prints to screen some values
-                    } catch (FileNotFoundException | JsonSyntaxException | JsonIOException e) {
+                    } catch (JsonSyntaxException | JsonIOException | IOException e) {
                         throw new RuntimeException(e);
                     }
-
-
-//                    try {
-//
-//                        gson.fromJson(jason, )
-//                    }
                     break;
                 }
+
                 case 'g': {
                     System.out.println("Należy wybrać tabelę: ");
                     System.out.println("a) Pracownicy ");
@@ -195,7 +228,7 @@ public class Main {
                     System.out.println("c) Firmy ");
                     char pickYourList = scanner.next().charAt(0);
 
-                    switch (pickYourList){
+                    switch (pickYourList) {
                         case 'a' -> writeMeLikeYouDo(employeeList);
                         case 'b' -> writeMeLikeYouDo(projectList);
                         case 'c' -> writeMeLikeYouDo(companyList);
@@ -236,7 +269,7 @@ public class Main {
         DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd");
         String srtDate = dateFormat.format(nowDate);
         try (Writer fileWriter = new FileWriter(name + "List" + srtDate + ".json");
-             BufferedWriter in = new BufferedWriter(fileWriter)){
+             BufferedWriter in = new BufferedWriter(fileWriter)) {
             JSONArray ja = new JSONArray(list);
             in.write(ja.toString());
         } catch (IOException e) {
