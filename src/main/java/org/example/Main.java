@@ -126,6 +126,7 @@ public class Main {
             System.out.println("c) Wyswietl liste firm ");
             System.out.println("d) Dodowanie uyztkownika ");
             System.out.println("e) Usuwannie uzytkownika ");
+            System.out.println("f) Czytanie pliku JSON i dodawanie do bazy danych ");
             System.out.println("g) Konwersja tabeli na plik .JSON ");
             System.out.println("h) Dodaj pracowników do projektu ");
             System.out.println("q) Wyjscie ");
