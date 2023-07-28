@@ -129,6 +129,7 @@ public class Main {
             System.out.println("f) Czytanie pliku JSON i dodawanie do bazy danych ");
             System.out.println("g) Konwersja tabeli na plik .JSON ");
             System.out.println("h) Dodaj pracowników do projektu ");
+            System.out.println("i) Dodawanie zadan do projektu");
             System.out.println("q) Wyjscie ");
             char choice = scanner.next().charAt(0);
 
@@ -243,6 +244,23 @@ public class Main {
                     int counter = scanner.nextInt();
                     dodajPracownikaDoProjektu(assignmentList, projectId, counter);
                     break;
+                }
+
+                case 'i': {
+                    System.out.println("Podaj id projektu, do ktorego chcesz dodac zadanie:");
+                    int project_id = scanner.nextInt();
+
+                    for (Project p: projectList) {
+                        if (p.getId() != project_id) {
+                            System.out.println("NIe ma takiego projektu");
+                            break;
+                        }
+                    }
+
+                    // W przypadku, gdy istnieje project
+
+                    System.out.println("");
+
                 }
 
                 case 'q': {
