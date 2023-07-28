@@ -12,6 +12,7 @@ import org.example.classes.employee.Employee;
 import org.example.classes.employee.EmployeePosition;
 import org.example.classes.project.Project;
 import org.example.classes.project.ProjectStatus;
+import org.example.classes.tasks.Task;
 import org.json.JSONArray;
 
 import java.io.*;
@@ -20,6 +21,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class Main {
@@ -119,17 +121,20 @@ public class Main {
         assignmentList.add(assignment4);
         assignmentList.add(assignment5);
 
+        List<Task> taskList = new ArrayList<>();
+
         while (true) {
             System.out.println("Co chcesz zrobic? ");
             System.out.println("a) Wyswietl pracownikow ");
             System.out.println("b) Wyswietl liste projektow ");
             System.out.println("c) Wyswietl liste firm ");
-            System.out.println("d) Dodowanie uyztkownika ");
-            System.out.println("e) Usuwannie uzytkownika ");
-            System.out.println("f) Czytanie pliku JSON i dodawanie do bazy danych ");
-            System.out.println("g) Konwersja tabeli na plik .JSON ");
-            System.out.println("h) Dodaj pracowników do projektu ");
-            System.out.println("i) Dodawanie zadan do projektu");
+            System.out.println("d) Wyswietl liste zadan");
+            System.out.println("e) Dodowanie uyztkownika ");
+            System.out.println("f) Usuwannie uzytkownika ");
+            System.out.println("g) Czytanie pliku JSON i dodawanie do bazy danych ");
+            System.out.println("h) Konwersja tabeli na plik .JSON ");
+            System.out.println("i) Dodaj pracowników do projektu ");
+            System.out.println("j) Dodawanie zadan do projektu");
             System.out.println("q) Wyjscie ");
             char choice = scanner.next().charAt(0);
 
@@ -156,12 +161,19 @@ public class Main {
                     break;
                 }
                 case 'd': {
+                    for (Task t : taskList) {
+                        System.out.println(t.getProject_id() + " | " + t.getEmployee_id() + " | " + t.getPriority() + " | " + t.getStart_date() + " | " + t.getEnd_date() + " | " + t.getDiscription());
+                    }
+                    System.out.println();
+                }
+                break;
+                case 'e': {
                     employeeList.add(new Employee(faker.number().numberBetween(1, 200), faker.name().firstName(), faker.name().lastName(), (int) faker.number().randomNumber(11, true), faker.internet().emailAddress(), faker.number().numberBetween(111111111, 999999999), EmployeePosition.DEV));
                     System.out.println("Dodano nowego uzytkownika");
                     System.out.println();
                     break;
                 }
-                case 'e': {
+                case 'f': {
                     System.out.println("Podaj id uzytkownika, ktorego chcesz ususnac: ");
                     int employee_id = scanner.nextInt();
                     employeeList.remove(getEmployee(employee_id, employeeList));
@@ -169,7 +181,7 @@ public class Main {
                     System.out.println();
                     break;
                 }
-                case 'f': {
+                case 'g': {
                     System.out.println("Podaj sciezke gdzie znajudje sie plik: ");
                     String filename = scanner.next();
 
@@ -195,6 +207,7 @@ public class Main {
                                 employeeList.addAll(data);
 
                                 System.out.println("Nowi pracownicy zostali dodani");
+                                break;
                             }
                             case 'b': {
                                 Type projectListType = new TypeToken<List<Project>>() {
@@ -204,6 +217,7 @@ public class Main {
                                 projectList.addAll(data);
 
                                 System.out.println("Nowe projekty zostaly dodane");
+                                break;
                             }
                             case 'c': {
                                 Type companyListType = new TypeToken<List<Company>>() {
@@ -213,6 +227,7 @@ public class Main {
                                 companyList.addAll(data);
 
                                 System.out.println("Nowe firmy zostaly dodane");
+                                break;
                             }
                         }
 
@@ -223,7 +238,7 @@ public class Main {
                     break;
                 }
 
-                case 'g': {
+                case 'h': {
                     System.out.println("Należy wybrać tabelę: ");
                     System.out.println("a) Pracownicy ");
                     System.out.println("b) Projekty ");
@@ -237,7 +252,7 @@ public class Main {
                     }
                     break;
                 }
-                case 'h': {
+                case 'i': {
                     System.out.println("Podaj id projektu: ");
                     int projectId = scanner.nextInt();
                     System.out.println("Ilu pracownikow chcesz dodac: ");
@@ -246,21 +261,40 @@ public class Main {
                     break;
                 }
 
-                case 'i': {
+                case 'j': {
                     System.out.println("Podaj id projektu, do ktorego chcesz dodac zadanie:");
                     int project_id = scanner.nextInt();
+                    boolean check = true;
 
-                    for (Project p: projectList) {
-                        if (p.getId() != project_id) {
-                            System.out.println("NIe ma takiego projektu");
-                            break;
+                    for (Project p : projectList) {
+                        if (p.getId() == project_id) {
+                            check = false;
                         }
+                    }
+
+                    if (check) {
+                        System.out.println("Nie ma takiego projektu");
+                        break;
                     }
 
                     // W przypadku, gdy istnieje project
 
-                    System.out.println("");
+                    System.out.println("Podaj id uzytkownika ktorego chcesz dodac do projektu");
+                    int employee_id = scanner.nextInt();
+                    System.out.println("Priorytet zadania (1-5), gdzie 1 oznacza najwazniejsze zadanie");
+                    int priority = scanner.nextInt(); //<-- zabezpeiczyc
+                    String start_date = "28-07-2023";
+                    System.out.println("Podaj date zakonczenia zadania w formacie (DD-MM-2023)");
+                    String end_date = scanner.next();
+                    System.out.println("Podaj opis do zadania (domyslnie - 'Do roboty!')");
+                    String discription = scanner.next(); // <-Poprawic
+                    if (discription.isEmpty()) {
+                        discription = "Do roboty!";
+                    }
 
+                    taskList.add(new Task(project_id, employee_id, priority, start_date, end_date, discription));
+                    System.err.println("Dodano wpis do listy zadan");
+                    break;
                 }
 
                 case 'q': {
@@ -274,6 +308,7 @@ public class Main {
         }
 
     }
+
 
     public static Employee getEmployee(int employee_id, List<Employee> employeeList) {
         return employeeList.stream()
@@ -297,7 +332,7 @@ public class Main {
         System.out.println("Successfully wrote to file!");
     }
 
-    static void dodajPracownikaDoProjektu(List<Assignment> assignmentList, int projectId, int counter){
+    static void dodajPracownikaDoProjektu(List<Assignment> assignmentList, int projectId, int counter) {
         Scanner s = new Scanner(System.in);
         for (int i = 0; i < counter; i++) {
             System.out.println("Podaj id pracownika: ");

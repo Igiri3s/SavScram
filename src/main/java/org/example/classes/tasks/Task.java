@@ -15,8 +15,8 @@ public class Task {
     private int project_id;
     private int employee_id;
     private int priority;
-    private Date start_date;
-    private Date end_date;
+    private String start_date;
+    private String end_date;
     private String discription;
 
 }
