@@ -11,10 +11,12 @@ import org.example.classes.employee.Employee;
 import org.example.classes.employee.EmployeePosition;
 import org.example.classes.project.Project;
 import org.example.classes.project.ProjectStatus;
+import org.json.JSONArray;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.lang.reflect.Type;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Main {
@@ -108,6 +110,7 @@ public class Main {
             System.out.println("c) Wyswietl liste firm ");
             System.out.println("d) Dodowanie uyztkownika ");
             System.out.println("e) Usuwannie uzytkownika ");
+            System.out.println("g) Konwersja tabeli na plik .JSON ");
             System.out.println("q) Wyjscie ");
             char choice = scanner.next().charAt(0);
 
@@ -170,6 +173,21 @@ public class Main {
 //                    }
                     break;
                 }
+                case 'g': {
+                    System.out.println("Należy wybrać tabelę: ");
+                    System.out.println("a) Pracownicy ");
+                    System.out.println("b) Projekty ");
+                    System.out.println("c) Firmy ");
+                    char pickYourList = scanner.next().charAt(0);
+
+                    switch (pickYourList){
+                        case 'a' -> writeMeLikeYouDo(employeeList);
+                        case 'b' -> writeMeLikeYouDo(projectList);
+                        case 'c' -> writeMeLikeYouDo(companyList);
+                    }
+                    break;
+                }
+
                 case 'q': {
                     System.exit(0);
                     break;
@@ -187,5 +205,20 @@ public class Main {
                 .filter(employee -> employee.getId() == employee_id)
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("NIe ma takiego pracownika"));
+    }
+
+    static void writeMeLikeYouDo(List<?> list) {
+        String name = list.get(0).getClass().getSimpleName().toLowerCase();
+        Date nowDate = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd");
+        String srtDate = dateFormat.format(nowDate);
+        try (Writer fileWriter = new FileWriter(name + "List" + srtDate + ".json");
+             BufferedWriter in = new BufferedWriter(fileWriter)){
+            JSONArray ja = new JSONArray(list);
+            in.write(ja.toString());
+        } catch (IOException e) {
+            System.err.println("Unable to write to file. An exception occurred");
+        }
+        System.out.println("Successfully wrote to file!");
     }
 }
