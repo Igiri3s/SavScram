@@ -14,7 +14,10 @@ import org.example.classes.project.ProjectStatus;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class Main {
@@ -149,25 +152,24 @@ public class Main {
                 }
                 case 'f': {
                     System.out.println("Podaj sciezke gdzie znajudje sie plik: ");
-                    String filename = scanner.nextLine();
+                    String filename = scanner.next();
 
                     try {
-                        final Type REVIEW_TYPE = new TypeToken<List<Employee>>() {
-                        }.getType();
+                        String json = new String(Files.readAllBytes(Paths.get(filename)));
                         Gson gson = new Gson();
-                        JsonReader reader = new JsonReader(new FileReader(filename));
-                        List<Employee> data = gson.fromJson(reader, REVIEW_TYPE); // contains the whole reviews list
-                        System.out.println(data);
+
+                        Type employeeListType = new TypeToken<List<Employee>>(){}.getType();
+
+                        List<Employee> data = gson.fromJson(json, employeeListType); // contains the whole reviews list
+                        for (Employee e: data) {
+                            System.out.println(e);
+                        }
                         ; // prints to screen some values
-                    } catch (FileNotFoundException | JsonSyntaxException | JsonIOException e) {
+                    } catch (JsonSyntaxException | JsonIOException | IOException e) {
                         throw new RuntimeException(e);
                     }
 
 
-//                    try {
-//
-//                        gson.fromJson(jason, )
-//                    }
                     break;
                 }
                 case 'q': {
