@@ -6,6 +6,7 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+import org.example.classes.assignment.Assignment;
 import org.example.classes.company.Company;
 import org.example.classes.employee.Employee;
 import org.example.classes.employee.EmployeePosition;
@@ -62,6 +63,12 @@ public class Main {
         Company company4 = new Company(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), (int) faker.number().randomNumber(10, true), faker.name().fullName());
         Company company5 = new Company(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), (int) faker.number().randomNumber(10, true), faker.name().fullName());
 
+        Assignment assignment1 = new Assignment(1, 1);
+        Assignment assignment2 = new Assignment(2, 2);
+        Assignment assignment3 = new Assignment(2, 3);
+        Assignment assignment4 = new Assignment(2, 4);
+        Assignment assignment5 = new Assignment(3, 5);
+
         List<Project> projectList = new ArrayList<>();
         projectList.add(project1);
         projectList.add(project2);
@@ -103,6 +110,13 @@ public class Main {
         employeeList.add(employee9);
         employeeList.add(employee10);
 
+        List<Assignment> assignmentList = new ArrayList<>();
+        assignmentList.add(assignment1);
+        assignmentList.add(assignment2);
+        assignmentList.add(assignment3);
+        assignmentList.add(assignment4);
+        assignmentList.add(assignment5);
+
         while (true) {
             System.out.println("Co chcesz zrobic? ");
             System.out.println("a) Wyswietl pracownikow ");
@@ -111,6 +125,7 @@ public class Main {
             System.out.println("d) Dodowanie uyztkownika ");
             System.out.println("e) Usuwannie uzytkownika ");
             System.out.println("g) Konwersja tabeli na plik .JSON ");
+            System.out.println("h) Dodaj pracowników do projektu ");
             System.out.println("q) Wyjscie ");
             char choice = scanner.next().charAt(0);
 
@@ -187,6 +202,14 @@ public class Main {
                     }
                     break;
                 }
+                case 'h': {
+                    System.out.println("Podaj id projektu: ");
+                    int projectId = scanner.nextInt();
+                    System.out.println("Ilu pracownikow chcesz dodac: ");
+                    int counter = scanner.nextInt();
+                    dodajPracownikaDoProjektu(assignmentList, projectId, counter);
+                    break;
+                }
 
                 case 'q': {
                     System.exit(0);
@@ -220,5 +243,15 @@ public class Main {
             System.err.println("Unable to write to file. An exception occurred");
         }
         System.out.println("Successfully wrote to file!");
+    }
+
+    static void dodajPracownikaDoProjektu(List<Assignment> assignmentList, int projectId, int counter){
+        Scanner s = new Scanner(System.in);
+        for (int i = 0; i < counter; i++) {
+            System.out.println("Podaj id pracownika: ");
+            int employeeId = s.nextInt();
+            assignmentList.add(new Assignment(projectId, employeeId));
+        }
+        System.out.println("Pomyślnie dodano pracowników w liczbie: " + counter);
     }
 }
