@@ -5,6 +5,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import org.example.classes.ColumnParser;
 import org.example.classes.assignment.Assignment;
 import org.example.classes.company.Company;
 import org.example.classes.employee.Employee;
@@ -23,6 +25,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import java.util.*;
+
+import static org.example.classes.ColumnParser.*;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException, ParseException {
@@ -50,31 +54,42 @@ public class Main {
             System.out.println("i) Dodaj pracowników do projektu ");
             System.out.println("j) Dodawanie zadan do projektu");
             System.out.println("k) Dodawanie nowego projektu ");
+
             System.out.println("q) Wyjscie ");
             char choice = scanner.next().charAt(0);
 
             switch (choice) {
                 case 'a' -> {
+                    System.out.println("ID " + " | " + parsererer("First name") + " | " + parsererer("Last name") + " | " + parsererer("PESEL") + " | " + parsererer("Phone number") + " | " + parsererer("Email") + " | " + "Position");
+                    System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
                     for (Employee e : employeeList) {
-                        System.out.println(e.getId() + " | " + e.getFirstName() + " | " + e.getLastName() + " | " + e.getPesel() + " | " + e.getPhoneNumer() + " | " + e.getEmail() + " | " + e.getPosition());
+                        System.out.println(parsererer(e.getId()) + " | " + parsererer(e.getFirstName()) + " | " + parsererer(e.getLastName()) + " | " + parsererer(String.valueOf(e.getPesel())) + " | " + parsererer(String.valueOf(e.getPhoneNumer())) + " | " + parsererer(e.getEmail()) + " | " + e.getPosition());
+                        System.out.println(parsererer(e.getId()) + " | " + parsererer(e.getFirstName()) + " | " + parsererer(e.getLastName()) + " | " + parsererer(String.valueOf(e.getPesel())) + " | " + parsererer(String.valueOf(e.getPhoneNumer())) + " | " + parsererer(e.getEmail()) + " | " + e.getPosition());
                     }
                     System.out.println();
                 }
                 case 'b' -> {
+                    System.out.println("ID " + " | " + parsererer("Project name") + " | " + parsererer("Start date") + " | " + parsererer("End date") + " | " + "Cost    " + " | " + "Revenue " + " | " + "Project status" + " | " + "Supervisor id");
+                    System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------");
                     for (Project p : projectList) {
-                        System.out.println(p.getId() + " | " + p.getProjectName() + " | " + p.getStartDate() + " | " + p.getEndDate() + " | " + p.getCost() + " | " + p.getRevenue() + " | " + p.getProjectStatus() + " | " + p.getSupervisorId());
+                        System.out.println(parsererer(p.getId()) + " | " + parsererer(p.getProjectName()) + " | " + parsererer(p.getStartDate()) + " | " + parsererer(p.getEndDate()) + " | " + parsererer(p.getCost()) + " | " + parsererer(p.getRevenue()) + " | " + p.getProjectStatus() + "    | " + p.getSupervisorId());
+                        System.out.println(parsererer(p.getId()) + " | " + parsererer(p.getProjectName()) + " | " + parsererer(p.getStartDate()) + " | " + parsererer(p.getEndDate()) + " | " + parsererer(p.getCost()) + " | " + parsererer(p.getRevenue()) + " | " + p.getProjectStatus() + "    | " + p.getSupervisorId());
                     }
                     System.out.println();
                 }
                 case 'c' -> {
+                    System.out.println("ID " + " | " + parsererer("Name") + " | " + "NIP" + "         | " + parsererer("Owner"));
                     for (Company c : companyList) {
-                        System.out.println(c.getId() + " | " + c.getName() + " | " + c.getNip() + " | " + c.getOwner());
+                        System.out.println(parsererer(c.getId()) + " | " + parsererer(c.getName()) + " | " + parsererer(c.getNip()) + " | " + parsererer(c.getOwner()));
+                        System.out.println(parsererer(c.getId()) + " | " + parsererer(c.getName()) + " | " + parsererer(c.getNip()) + " | " + parsererer(c.getOwner()));
                     }
                     System.out.println();
                 }
                 case 'd' -> {
+                    System.out.println("Project id" + " | " + "Employee id" + " | " + "Priority" + " | " + "Start date" + " | " + "End date" + " | " + "Description");
                     for (Task t : taskList) {
-                        System.out.println(t.getProject_id() + " | " + t.getEmployee_id() + " | " + t.getPriority() + " | " + t.getStart_date() + " | " + t.getEnd_date() + " | " + t.getDiscription());
+                        System.out.println(parsererer(t.getProject_id()) + "         | " + parsererer(t.getEmployee_id()) + "          | " + t.getPriority() + " | " + t.getStart_date() + " | " + t.getEnd_date() + " | " + t.getDiscription());
+                        System.out.println(parsererer(t.getProject_id()) + "         | " + parsererer(t.getEmployee_id()) + "          | " + t.getPriority() + " | " + t.getStart_date() + " | " + t.getEnd_date() + " | " + t.getDiscription());
                     }
                     System.out.println();
                 }
