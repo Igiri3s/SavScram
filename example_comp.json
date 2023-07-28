@@ -1,20 +1,14 @@
 [
   {
     "id": 1,
-    "firstName": "Michu",
-    "lastName": "Douglas",
-    "pesel": 12341,
-    "email": "Athena.Goodwin@yahoo.com",
-    "phoneNumer": 8655,
-    "position": "DEV"
+    "name": "Michu",
+    "nip": 12312,
+    "owner": "Hary"
   },
   {
     "id": 2,
-    "firstName": "Reid",
-    "lastName": "Douglas",
-    "pesel": 332323,
-    "email": "Athena.Goodwin@yahoo.com",
-    "phoneNumer": 7955,
-    "position": "DEV"
+    "name": "Cykady",
+    "nip": 222,
+    "owner": "Patryk"
   }
 ]

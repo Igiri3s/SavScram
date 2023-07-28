@@ -1,20 +1,22 @@
 [
   {
-    "id": 1,
-    "firstName": "Michu",
-    "lastName": "Douglas",
-    "pesel": 12341,
-    "email": "Athena.Goodwin@yahoo.com",
-    "phoneNumer": 8655,
-    "position": "DEV"
+    "id": 111,
+    "projectName":  "Uga Buga",
+    "startDate":  "Fri Sep 21 07:12:17 CEST 1990",
+    "endDate":  "Fri Sep 21 07:12:17 CEST 1990",
+    "cost": 8095,
+    "revenue": 79,
+    "projectStatus":  "IN_PROGRESS",
+    "supervisorId":  78
   },
   {
-    "id": 2,
-    "firstName": "Reid",
-    "lastName": "Douglas",
-    "pesel": 332323,
-    "email": "Athena.Goodwin@yahoo.com",
-    "phoneNumer": 7955,
-    "position": "DEV"
+    "id": 11,
+    "projectName":  "Uga aLA Lala Buga",
+    "startDate":  "Fri Sep 21 07:12:17 CEST 1990",
+    "endDate":  "Fri Sep 21 07:12:17 CEST 1990",
+    "cost": 80951,
+    "revenue": 792,
+    "projectStatus":  "IN_PROGRESS",
+    "supervisorId":  783
   }
 ]
