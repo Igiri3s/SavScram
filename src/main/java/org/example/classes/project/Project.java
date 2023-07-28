@@ -1,5 +1,6 @@
 package org.example.classes.project;
 
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 @ToString
 public class Project {
+    @Id
     private int id;
     private String projectName;
     private Date startDate;
@@ -20,5 +22,4 @@ public class Project {
     private double revenue;
     private ProjectStatus projectStatus;
     private int supervisorId;
-
 }

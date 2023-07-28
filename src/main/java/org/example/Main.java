@@ -20,12 +20,13 @@ import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
+
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, ParseException {
         Faker faker = new Faker();
         Scanner scanner = new Scanner(System.in);
 
@@ -135,6 +136,8 @@ public class Main {
             System.out.println("h) Konwersja tabeli na plik .JSON ");
             System.out.println("i) Dodaj pracowników do projektu ");
             System.out.println("j) Dodawanie zadan do projektu");
+            System.out.println("k) Dodawanie nowego projektu ");
+
             System.out.println("q) Wyjscie ");
             char choice = scanner.next().charAt(0);
 
@@ -296,6 +299,10 @@ public class Main {
                     System.err.println("Dodano wpis do listy zadan");
                     break;
                 }
+                case 'k': {
+                    createNewProject(projectList);
+                    break;
+                }
 
                 case 'q': {
                     System.exit(0);
@@ -340,5 +347,29 @@ public class Main {
             assignmentList.add(new Assignment(projectId, employeeId));
         }
         System.out.println("Pomyślnie dodano pracowników w liczbie: " + counter);
+    }
+
+    static void createNewProject(List<Project> projectList) throws ParseException {
+        Scanner s = new Scanner(System.in);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        System.out.println("Podaj id: ");
+        int id = s.nextInt();
+        System.out.println("Podaj nazwę projektu: ");
+        String projectName = s.next();
+        System.out.println("Podaj datę startu (dd-mm-yyyy): ");
+        String startDateStr = s.next();
+        Date startDate = formatter.parse(startDateStr);
+        System.out.println("Podaj datę konca (dd-mm-yyyy): ");
+        String endDateStr = s.next();
+        Date endDate = formatter.parse(endDateStr);
+        System.out.println("Podaj koszt: ");
+        double cost = s.nextDouble();
+        System.out.println("Podaj wynagrodzenie: ");
+        double revenue = s.nextDouble();
+        ProjectStatus projectStatus = ProjectStatus.IN_PROGRESS;
+        System.out.println("Podaj id osoby odpowiedzialnej za projekt: ");
+        int supervisorId = s.nextInt();
+        projectList.add(new Project(id, projectName, startDate, endDate, cost, revenue, projectStatus, supervisorId));
+        System.out.println("Successfully added project!");
     }
 }
