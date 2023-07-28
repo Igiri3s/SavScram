@@ -1,16 +1,24 @@
 package org.example;
 
 import com.github.javafaker.Faker;
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 import org.example.classes.company.Company;
 import org.example.classes.employee.Employee;
 import org.example.classes.employee.EmployeePosition;
 import org.example.classes.project.Project;
 import org.example.classes.project.ProjectStatus;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.lang.reflect.Type;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         Faker faker = new Faker();
         Scanner scanner = new Scanner(System.in);
 
@@ -96,9 +104,11 @@ public class Main {
         while (true) {
             System.out.println("Co chcesz zrobic? ");
             System.out.println("a) Wyswietl pracownikow ");
-            System.out.println("b) Wyswietl lsite projektow ");
+            System.out.println("b) Wyswietl liste projektow ");
             System.out.println("c) Wyswietl liste firm ");
             System.out.println("d) Dodowanie uyztkownika ");
+            System.out.println("e) Usuwannie uzytkownika ");
+            System.out.println("q) Wyjscie ");
             char choice = scanner.next().charAt(0);
 
             switch (choice) {
@@ -137,7 +147,31 @@ public class Main {
                     System.out.println();
                     break;
                 }
+                case 'f': {
+                    System.out.println("Podaj sciezke gdzie znajudje sie plik: ");
+                    String filename = scanner.nextLine();
+
+                    try {
+                        final Type REVIEW_TYPE = new TypeToken<List<Employee>>() {
+                        }.getType();
+                        Gson gson = new Gson();
+                        JsonReader reader = new JsonReader(new FileReader(filename));
+                        List<Employee> data = gson.fromJson(reader, REVIEW_TYPE); // contains the whole reviews list
+                        System.out.println(data);
+                        ; // prints to screen some values
+                    } catch (FileNotFoundException | JsonSyntaxException | JsonIOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+
+//                    try {
+//
+//                        gson.fromJson(jason, )
+//                    }
+                    break;
+                }
                 case 'q': {
+                    System.exit(0);
                     break;
                 }
 
