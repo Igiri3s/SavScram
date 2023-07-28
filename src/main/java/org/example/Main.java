@@ -11,10 +11,14 @@ import org.example.classes.employee.Employee;
 import org.example.classes.employee.EmployeePosition;
 import org.example.classes.project.Project;
 import org.example.classes.project.ProjectStatus;
+import org.json.JSONArray;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Main {
@@ -149,25 +153,37 @@ public class Main {
                 }
                 case 'f': {
                     System.out.println("Podaj sciezke gdzie znajudje sie plik: ");
-                    String filename = scanner.nextLine();
+                    String filename = scanner.next();
 
                     try {
-                        final Type REVIEW_TYPE = new TypeToken<List<Employee>>() {
-                        }.getType();
+                        String json = new String(Files.readAllBytes(Paths.get(filename)));
                         Gson gson = new Gson();
-                        JsonReader reader = new JsonReader(new FileReader(filename));
-                        List<Employee> data = gson.fromJson(reader, REVIEW_TYPE); // contains the whole reviews list
-                        System.out.println(data);
+
+                        Type employeeListType = new TypeToken<List<Employee>>(){}.getType();
+
+                        List<Employee> data = gson.fromJson(json, employeeListType); // contains the whole reviews list
+                        employeeList.addAll(data);
+
+                        System.out.println("Nowi pracownicy zostali dodani");
                         ; // prints to screen some values
-                    } catch (FileNotFoundException | JsonSyntaxException | JsonIOException e) {
+                    } catch (JsonSyntaxException | JsonIOException | IOException e) {
                         throw new RuntimeException(e);
                     }
+                    break;
+                }
 
+                case 'g': {
+                    System.out.println("Należy wybrać tabelę: ");
+                    System.out.println("a) Pracownicy ");
+                    System.out.println("b) Projekty ");
+                    System.out.println("c) Firmy ");
+                    char pickYourList = scanner.next().charAt(0);
 
-//                    try {
-//
-//                        gson.fromJson(jason, )
-//                    }
+                    switch (pickYourList){
+                        case 'a' -> writeMeLikeYouDo(employeeList);
+                        case 'b' -> writeMeLikeYouDo(projectList);
+                        case 'c' -> writeMeLikeYouDo(companyList);
+                    }
                     break;
                 }
                 case 'q': {
@@ -187,5 +203,20 @@ public class Main {
                 .filter(employee -> employee.getId() == employee_id)
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("NIe ma takiego pracownika"));
+    }
+
+    static void writeMeLikeYouDo(List<?> list) {
+        String name = list.get(0).getClass().getSimpleName().toLowerCase();
+        Date nowDate = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd");
+        String srtDate = dateFormat.format(nowDate);
+        try (Writer fileWriter = new FileWriter(name + "List" + srtDate + ".json");
+             BufferedWriter in = new BufferedWriter(fileWriter)){
+            JSONArray ja = new JSONArray(list);
+            in.write(ja.toString());
+        } catch (IOException e) {
+            System.err.println("Unable to write to file. An exception occurred");
+        }
+        System.out.println("Successfully wrote to file!");
     }
 }
