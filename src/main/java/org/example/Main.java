@@ -5,7 +5,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
 import org.example.classes.assignment.Assignment;
 import org.example.classes.company.Company;
 import org.example.classes.employee.Employee;
@@ -30,99 +29,13 @@ public class Main {
         Faker faker = new Faker();
         Scanner scanner = new Scanner(System.in);
 
-        Project project1 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
-        Project project2 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
-        Project project3 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
-        Project project4 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
-        Project project5 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
-        Project project6 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
-        Project project7 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
-        Project project8 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
-        Project project9 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
-        Project project10 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
-        Project project11 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
-        Project project12 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
-        Project project13 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
-        Project project14 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
-        Project project15 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
-        Project project16 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
-        Project project17 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
-        Project project18 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
-        Project project19 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
-        Project project20 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
-
-        Employee employee1 = new Employee(faker.number().numberBetween(1, 200), faker.name().firstName(), faker.name().lastName(), (int) faker.number().randomNumber(11, true), faker.internet().emailAddress(), faker.number().numberBetween(111111111, 999999999), EmployeePosition.DEV);
-        Employee employee2 = new Employee(faker.number().numberBetween(1, 200), faker.name().firstName(), faker.name().lastName(), (int) faker.number().randomNumber(11, true), faker.internet().emailAddress(), faker.number().numberBetween(111111111, 999999999), EmployeePosition.DEV);
-        Employee employee3 = new Employee(faker.number().numberBetween(1, 200), faker.name().firstName(), faker.name().lastName(), (int) faker.number().randomNumber(11, true), faker.internet().emailAddress(), faker.number().numberBetween(111111111, 999999999), EmployeePosition.DEV);
-        Employee employee4 = new Employee(faker.number().numberBetween(1, 200), faker.name().firstName(), faker.name().lastName(), (int) faker.number().randomNumber(11, true), faker.internet().emailAddress(), faker.number().numberBetween(111111111, 999999999), EmployeePosition.DEV);
-        Employee employee5 = new Employee(faker.number().numberBetween(1, 200), faker.name().firstName(), faker.name().lastName(), (int) faker.number().randomNumber(11, true), faker.internet().emailAddress(), faker.number().numberBetween(111111111, 999999999), EmployeePosition.DEV);
-        Employee employee6 = new Employee(faker.number().numberBetween(1, 200), faker.name().firstName(), faker.name().lastName(), (int) faker.number().randomNumber(11, true), faker.internet().emailAddress(), faker.number().numberBetween(111111111, 999999999), EmployeePosition.DEV);
-        Employee employee7 = new Employee(faker.number().numberBetween(1, 200), faker.name().firstName(), faker.name().lastName(), (int) faker.number().randomNumber(11, true), faker.internet().emailAddress(), faker.number().numberBetween(111111111, 999999999), EmployeePosition.DEV);
-        Employee employee8 = new Employee(faker.number().numberBetween(1, 200), faker.name().firstName(), faker.name().lastName(), (int) faker.number().randomNumber(11, true), faker.internet().emailAddress(), faker.number().numberBetween(111111111, 999999999), EmployeePosition.DEV);
-        Employee employee9 = new Employee(faker.number().numberBetween(1, 200), faker.name().firstName(), faker.name().lastName(), (int) faker.number().randomNumber(11, true), faker.internet().emailAddress(), faker.number().numberBetween(111111111, 999999999), EmployeePosition.DEV);
-        Employee employee10 = new Employee(faker.number().numberBetween(1, 200), faker.name().firstName(), faker.name().lastName(), (int) faker.number().randomNumber(11, true), faker.internet().emailAddress(), faker.number().numberBetween(111111111, 999999999), EmployeePosition.DEV);
-
-        Company company1 = new Company(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), (int) faker.number().randomNumber(10, true), faker.name().fullName());
-        Company company2 = new Company(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), (int) faker.number().randomNumber(10, true), faker.name().fullName());
-        Company company3 = new Company(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), (int) faker.number().randomNumber(10, true), faker.name().fullName());
-        Company company4 = new Company(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), (int) faker.number().randomNumber(10, true), faker.name().fullName());
-        Company company5 = new Company(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), (int) faker.number().randomNumber(10, true), faker.name().fullName());
-
-        Assignment assignment1 = new Assignment(1, 1);
-        Assignment assignment2 = new Assignment(2, 2);
-        Assignment assignment3 = new Assignment(2, 3);
-        Assignment assignment4 = new Assignment(2, 4);
-        Assignment assignment5 = new Assignment(3, 5);
-
         List<Project> projectList = new ArrayList<>();
-        projectList.add(project1);
-        projectList.add(project2);
-        projectList.add(project3);
-        projectList.add(project4);
-        projectList.add(project5);
-        projectList.add(project6);
-        projectList.add(project7);
-        projectList.add(project8);
-        projectList.add(project9);
-        projectList.add(project10);
-        projectList.add(project11);
-        projectList.add(project12);
-        projectList.add(project13);
-        projectList.add(project14);
-        projectList.add(project15);
-        projectList.add(project16);
-        projectList.add(project17);
-        projectList.add(project18);
-        projectList.add(project19);
-        projectList.add(project20);
-
         List<Company> companyList = new ArrayList<>();
-        companyList.add(company1);
-        companyList.add(company2);
-        companyList.add(company3);
-        companyList.add(company4);
-        companyList.add(company5);
-
         List<Employee> employeeList = new ArrayList<>();
-        employeeList.add(employee1);
-        employeeList.add(employee2);
-        employeeList.add(employee3);
-        employeeList.add(employee4);
-        employeeList.add(employee5);
-        employeeList.add(employee6);
-        employeeList.add(employee7);
-        employeeList.add(employee8);
-        employeeList.add(employee9);
-        employeeList.add(employee10);
-
         List<Assignment> assignmentList = new ArrayList<>();
-        assignmentList.add(assignment1);
-        assignmentList.add(assignment2);
-        assignmentList.add(assignment3);
-        assignmentList.add(assignment4);
-        assignmentList.add(assignment5);
-
         List<Task> taskList = new ArrayList<>();
+
+        fillData(projectList, companyList, employeeList, assignmentList, taskList);
 
         while (true) {
             System.out.println("Co chcesz zrobic? ");
@@ -137,54 +50,47 @@ public class Main {
             System.out.println("i) Dodaj pracowników do projektu ");
             System.out.println("j) Dodawanie zadan do projektu");
             System.out.println("k) Dodawanie nowego projektu ");
-
             System.out.println("q) Wyjscie ");
             char choice = scanner.next().charAt(0);
 
             switch (choice) {
-                case 'a': {
+                case 'a' -> {
                     for (Employee e : employeeList) {
                         System.out.println(e.getId() + " | " + e.getFirstName() + " | " + e.getLastName() + " | " + e.getPesel() + " | " + e.getPhoneNumer() + " | " + e.getEmail() + " | " + e.getPosition());
                     }
                     System.out.println();
-                    break;
                 }
-                case 'b': {
+                case 'b' -> {
                     for (Project p : projectList) {
                         System.out.println(p.getId() + " | " + p.getProjectName() + " | " + p.getStartDate() + " | " + p.getEndDate() + " | " + p.getCost() + " | " + p.getRevenue() + " | " + p.getProjectStatus() + " | " + p.getSupervisorId());
                     }
                     System.out.println();
-                    break;
                 }
-                case 'c': {
+                case 'c' -> {
                     for (Company c : companyList) {
                         System.out.println(c.getId() + " | " + c.getName() + " | " + c.getNip() + " | " + c.getOwner());
                     }
                     System.out.println();
-                    break;
                 }
-                case 'd': {
+                case 'd' -> {
                     for (Task t : taskList) {
                         System.out.println(t.getProject_id() + " | " + t.getEmployee_id() + " | " + t.getPriority() + " | " + t.getStart_date() + " | " + t.getEnd_date() + " | " + t.getDiscription());
                     }
                     System.out.println();
                 }
-                break;
-                case 'e': {
+                case 'e' -> {
                     employeeList.add(new Employee(faker.number().numberBetween(1, 200), faker.name().firstName(), faker.name().lastName(), (int) faker.number().randomNumber(11, true), faker.internet().emailAddress(), faker.number().numberBetween(111111111, 999999999), EmployeePosition.DEV));
                     System.out.println("Dodano nowego uzytkownika");
                     System.out.println();
-                    break;
                 }
-                case 'f': {
+                case 'f' -> {
                     System.out.println("Podaj id uzytkownika, ktorego chcesz ususnac: ");
                     int employee_id = scanner.nextInt();
                     employeeList.remove(getEmployee(employee_id, employeeList));
                     System.out.println("Usunieto uzytkownika od id: " + employee_id);
                     System.out.println();
-                    break;
                 }
-                case 'g': {
+                case 'g' -> {
                     System.out.println("Podaj sciezke gdzie znajudje sie plik: ");
                     String filename = scanner.next();
 
@@ -202,7 +108,7 @@ public class Main {
                         String json = new String(Files.readAllBytes(Paths.get(filename)));
 
                         switch (pickYourList) {
-                            case 'a': {
+                            case 'a' -> {
                                 Type employeeListType = new TypeToken<List<Employee>>() {
                                 }.getType();
 
@@ -210,9 +116,8 @@ public class Main {
                                 employeeList.addAll(data);
 
                                 System.out.println("Nowi pracownicy zostali dodani");
-                                break;
                             }
-                            case 'b': {
+                            case 'b' -> {
                                 Type projectListType = new TypeToken<List<Project>>() {
                                 }.getType();
 
@@ -220,9 +125,8 @@ public class Main {
                                 projectList.addAll(data);
 
                                 System.out.println("Nowe projekty zostaly dodane");
-                                break;
                             }
-                            case 'c': {
+                            case 'c' -> {
                                 Type companyListType = new TypeToken<List<Company>>() {
                                 }.getType();
 
@@ -230,7 +134,6 @@ public class Main {
                                 companyList.addAll(data);
 
                                 System.out.println("Nowe firmy zostaly dodane");
-                                break;
                             }
                         }
 
@@ -238,10 +141,8 @@ public class Main {
                     } catch (JsonSyntaxException | JsonIOException | IOException e) {
                         throw new RuntimeException(e);
                     }
-                    break;
                 }
-
-                case 'h': {
+                case 'h' -> {
                     System.out.println("Należy wybrać tabelę: ");
                     System.out.println("a) Pracownicy ");
                     System.out.println("b) Projekty ");
@@ -253,18 +154,15 @@ public class Main {
                         case 'b' -> writeMeLikeYouDo(projectList);
                         case 'c' -> writeMeLikeYouDo(companyList);
                     }
-                    break;
                 }
-                case 'i': {
+                case 'i' -> {
                     System.out.println("Podaj id projektu: ");
                     int projectId = scanner.nextInt();
                     System.out.println("Ilu pracownikow chcesz dodac: ");
                     int counter = scanner.nextInt();
                     dodajPracownikaDoProjektu(assignmentList, projectId, counter);
-                    break;
                 }
-
-                case 'j': {
+                case 'j' -> {
                     System.out.println("Podaj id projektu, do ktorego chcesz dodac zadanie:");
                     int project_id = scanner.nextInt();
                     boolean check = true;
@@ -272,6 +170,7 @@ public class Main {
                     for (Project p : projectList) {
                         if (p.getId() == project_id) {
                             check = false;
+                            break;
                         }
                     }
 
@@ -299,30 +198,21 @@ public class Main {
 
                     taskList.add(new Task(project_id, employee_id, priority, start_date, end_date, discription, role));
                     System.err.println("Dodano wpis do listy zadan");
-                    break;
                 }
-                case 'k': {
+                case 'k' -> {
                     createNewProject(projectList);
-                    break;
                 }
-
-                case 'l': {
+                case 'l' -> {
                     changeRoleOfEmployee(taskList);
-                    break;
                 }
-
-                case 'q': {
+                case 'q' -> {
                     System.exit(0);
-                    break;
                 }
-
-
             }
 
         }
 
     }
-
     private static void changeRoleOfEmployee(final List<Task> taskList) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Podaj id projektu, w ktorym chcesz wprowadzic zmiany");
@@ -419,4 +309,99 @@ public class Main {
         projectList.add(new Project(id, projectName, startDate, endDate, cost, revenue, projectStatus, supervisorId));
         System.out.println("Successfully added project!");
     }
+
+    private static void fillData(final List<Project> projectList, final List<Company> companyList, final List<Employee> employeeList, final List<Assignment> assignmentList, final List<Task> taskList) {
+
+        Faker faker = new Faker();
+
+        Project project1 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
+        Project project2 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
+        Project project3 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
+        Project project4 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
+        Project project5 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
+        Project project6 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
+        Project project7 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
+        Project project8 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
+        Project project9 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
+        Project project10 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
+        Project project11 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
+        Project project12 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
+        Project project13 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
+        Project project14 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
+        Project project15 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
+        Project project16 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
+        Project project17 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
+        Project project18 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
+        Project project19 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
+        Project project20 = new Project(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), faker.date().birthday(), faker.date().birthday(), faker.number().numberBetween(1000, 99999), faker.number().numberBetween(50, 150), ProjectStatus.IN_PROGRESS, faker.number().numberBetween(1, 200));
+
+        Employee employee1 = new Employee(faker.number().numberBetween(1, 200), faker.name().firstName(), faker.name().lastName(), (int) faker.number().randomNumber(11, true), faker.internet().emailAddress(), faker.number().numberBetween(111111111, 999999999), EmployeePosition.DEV);
+        Employee employee2 = new Employee(faker.number().numberBetween(1, 200), faker.name().firstName(), faker.name().lastName(), (int) faker.number().randomNumber(11, true), faker.internet().emailAddress(), faker.number().numberBetween(111111111, 999999999), EmployeePosition.DEV);
+        Employee employee3 = new Employee(faker.number().numberBetween(1, 200), faker.name().firstName(), faker.name().lastName(), (int) faker.number().randomNumber(11, true), faker.internet().emailAddress(), faker.number().numberBetween(111111111, 999999999), EmployeePosition.DEV);
+        Employee employee4 = new Employee(faker.number().numberBetween(1, 200), faker.name().firstName(), faker.name().lastName(), (int) faker.number().randomNumber(11, true), faker.internet().emailAddress(), faker.number().numberBetween(111111111, 999999999), EmployeePosition.DEV);
+        Employee employee5 = new Employee(faker.number().numberBetween(1, 200), faker.name().firstName(), faker.name().lastName(), (int) faker.number().randomNumber(11, true), faker.internet().emailAddress(), faker.number().numberBetween(111111111, 999999999), EmployeePosition.DEV);
+        Employee employee6 = new Employee(faker.number().numberBetween(1, 200), faker.name().firstName(), faker.name().lastName(), (int) faker.number().randomNumber(11, true), faker.internet().emailAddress(), faker.number().numberBetween(111111111, 999999999), EmployeePosition.DEV);
+        Employee employee7 = new Employee(faker.number().numberBetween(1, 200), faker.name().firstName(), faker.name().lastName(), (int) faker.number().randomNumber(11, true), faker.internet().emailAddress(), faker.number().numberBetween(111111111, 999999999), EmployeePosition.DEV);
+        Employee employee8 = new Employee(faker.number().numberBetween(1, 200), faker.name().firstName(), faker.name().lastName(), (int) faker.number().randomNumber(11, true), faker.internet().emailAddress(), faker.number().numberBetween(111111111, 999999999), EmployeePosition.DEV);
+        Employee employee9 = new Employee(faker.number().numberBetween(1, 200), faker.name().firstName(), faker.name().lastName(), (int) faker.number().randomNumber(11, true), faker.internet().emailAddress(), faker.number().numberBetween(111111111, 999999999), EmployeePosition.DEV);
+        Employee employee10 = new Employee(faker.number().numberBetween(1, 200), faker.name().firstName(), faker.name().lastName(), (int) faker.number().randomNumber(11, true), faker.internet().emailAddress(), faker.number().numberBetween(111111111, 999999999), EmployeePosition.DEV);
+
+        Company company1 = new Company(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), (int) faker.number().randomNumber(10, true), faker.name().fullName());
+        Company company2 = new Company(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), (int) faker.number().randomNumber(10, true), faker.name().fullName());
+        Company company3 = new Company(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), (int) faker.number().randomNumber(10, true), faker.name().fullName());
+        Company company4 = new Company(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), (int) faker.number().randomNumber(10, true), faker.name().fullName());
+        Company company5 = new Company(faker.number().numberBetween(1, 200), faker.name().nameWithMiddle(), (int) faker.number().randomNumber(10, true), faker.name().fullName());
+
+        Assignment assignment1 = new Assignment(1, 1);
+        Assignment assignment2 = new Assignment(2, 2);
+        Assignment assignment3 = new Assignment(2, 3);
+        Assignment assignment4 = new Assignment(2, 4);
+        Assignment assignment5 = new Assignment(3, 5);
+
+        projectList.add(project1);
+        projectList.add(project2);
+        projectList.add(project3);
+        projectList.add(project4);
+        projectList.add(project5);
+        projectList.add(project6);
+        projectList.add(project7);
+        projectList.add(project8);
+        projectList.add(project9);
+        projectList.add(project10);
+        projectList.add(project11);
+        projectList.add(project12);
+        projectList.add(project13);
+        projectList.add(project14);
+        projectList.add(project15);
+        projectList.add(project16);
+        projectList.add(project17);
+        projectList.add(project18);
+        projectList.add(project19);
+        projectList.add(project20);
+
+        companyList.add(company1);
+        companyList.add(company2);
+        companyList.add(company3);
+        companyList.add(company4);
+        companyList.add(company5);
+
+        employeeList.add(employee1);
+        employeeList.add(employee2);
+        employeeList.add(employee3);
+        employeeList.add(employee4);
+        employeeList.add(employee5);
+        employeeList.add(employee6);
+        employeeList.add(employee7);
+        employeeList.add(employee8);
+        employeeList.add(employee9);
+        employeeList.add(employee10);
+
+        assignmentList.add(assignment1);
+        assignmentList.add(assignment2);
+        assignmentList.add(assignment3);
+        assignmentList.add(assignment4);
+        assignmentList.add(assignment5);
+    }
+
+
 }
